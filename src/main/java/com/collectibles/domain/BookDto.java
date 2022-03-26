@@ -12,8 +12,9 @@ public class BookDto {
     private String title;
     private String author;
     private String description;
-    private String publishedYear;
+    private String year;
     private String genre;
+    private String rating;
     private String userRating;
     private String userNote;
 }
