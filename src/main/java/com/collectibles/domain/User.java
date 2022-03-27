@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -37,6 +39,29 @@ public class User {
     @NotNull
     private LocalDate registration;
 
-    @Column(name="lastLogin")
+    @Column(name="last_login")
     private LocalDateTime lastLogin;
+
+    @OneToMany(
+            targetEntity = MoviesCollection.class,
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<MoviesCollection> moviesCollections = new ArrayList<>();
+
+    @OneToMany(
+            targetEntity = BooksCollection.class,
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<BooksCollection> booksCollections = new ArrayList<>();
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.registration = LocalDate.now();
+    }
 }

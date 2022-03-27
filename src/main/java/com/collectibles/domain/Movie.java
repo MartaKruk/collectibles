@@ -6,13 +6,15 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="movies")
-public class Movie implements Collectible {
+public class Movie {
 
     @Id
     @GeneratedValue
@@ -32,15 +34,25 @@ public class Movie implements Collectible {
     @Column(name="year")
     private String year;
 
-    @Column(name="genre")
-    private String genre;
-
     @Column(name="rating")
     private String rating;
 
-    @Column(name="userRating")
+    @Column(name="user_rating")
     private String userRating;
 
-    @Column(name="userNote")
+    @Column(name="user_note")
     private String userNote;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "movies")
+    private List<MoviesCollection> moviesCollections = new ArrayList<>();
+
+    public Movie(String title, String director, String description, String year, String rating, String userRating, String userNote) {
+        this.title = title;
+        this.director = director;
+        this.description = description;
+        this.year = year;
+        this.rating = rating;
+        this.userRating = userRating;
+        this.userNote = userNote;
+    }
 }

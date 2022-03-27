@@ -4,16 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookDto {
+public class BooksCollectionDto {
     private Long id;
-    private String title;
-    private String author;
+    private String name;
     private String description;
-    private String year;
-    private String rating;
-    private String userRating;
-    private String userNote;
 }
