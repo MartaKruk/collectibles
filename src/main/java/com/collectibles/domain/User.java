@@ -45,7 +45,7 @@ public class User {
     @OneToMany(
             targetEntity = MoviesCollection.class,
             mappedBy = "user",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY
     )
     private List<MoviesCollection> moviesCollections = new ArrayList<>();
@@ -53,7 +53,7 @@ public class User {
     @OneToMany(
             targetEntity = BooksCollection.class,
             mappedBy = "user",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY
     )
     private List<BooksCollection> booksCollections = new ArrayList<>();
