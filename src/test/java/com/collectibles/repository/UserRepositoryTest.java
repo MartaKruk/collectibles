@@ -1,7 +1,6 @@
 package com.collectibles.repository;
 
-import com.collectibles.domain.BooksCollection;
-import com.collectibles.domain.MoviesCollection;
+import com.collectibles.domain.Collection;
 import com.collectibles.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +19,7 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Autowired
-    private MoviesCollectionRepository moviesCollectionRepository;
-
-    @Autowired
-    private BooksCollectionRepository booksCollectionRepository;
+    private CollectionRepository collectionRepository;
 
     private static final String NAME = "Test name";
 
@@ -66,37 +62,17 @@ public class UserRepositoryTest {
     }
 
     @Test
-    void testUserRepositorySave_shouldSaveMoviesCollections() {
-        //Given
-        User user = createTestUser();
-        MoviesCollection moviesCollection = new MoviesCollection();
-        user.getMoviesCollections().add(moviesCollection);
-
-        //When
-        userRepository.save(user);
-        Long userId = user.getId();
-        Long collectionId = moviesCollection.getId();
-        Optional<MoviesCollection> testMoviesCollection = moviesCollectionRepository.findById(collectionId);
-
-        //Then
-        assertTrue(testMoviesCollection.isPresent());
-
-        //Cleanup
-        userRepository.deleteById(userId);
-    }
-
-    @Test
     void testUserRepositorySave_shouldSaveBooksCollections() {
         //Given
         User user = createTestUser();
-        BooksCollection booksCollection = new BooksCollection();
-        user.getBooksCollections().add(booksCollection);
+        Collection collection = new Collection();
+        user.getCollections().add(collection);
 
         //When
         userRepository.save(user);
         Long userId = user.getId();
-        Long collectionId = booksCollection.getId();
-        Optional<BooksCollection> testBooksCollection = booksCollectionRepository.findById(collectionId);
+        Long collectionId = collection.getId();
+        Optional<Collection> testBooksCollection = collectionRepository.findById(collectionId);
 
         //Then
         assertTrue(testBooksCollection.isPresent());

@@ -28,31 +28,15 @@ public class Book {
     @Column(name="author")
     private String author;
 
-    @Column(name="description")
-    private String description;
-
-    @Column(name="year")
-    private String year;
-
-    @Column(name="rating")
-    private String rating;
-
     @Column(name="user_rating")
     private String userRating;
 
-    @Column(name="user_note")
-    private String userNote;
-
     @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "books")
-    private List<BooksCollection> booksCollections = new ArrayList<>();
+    private List<Collection> collections = new ArrayList<>();
 
     public Book(String title, String author, String description, String year, String rating, String userRating, String userNote) {
         this.title = title;
         this.author = author;
-        this.description = description;
-        this.year = year;
-        this.rating = rating;
         this.userRating = userRating;
-        this.userNote = userNote;
     }
 }

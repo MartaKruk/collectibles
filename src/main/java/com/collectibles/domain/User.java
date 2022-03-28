@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class User {
     @Column(name="id", unique=true)
     private Long id;
 
-    @Column(name="name")
+    @Column(name="name", unique=true)
     @NotNull
     private String name;
 
@@ -39,24 +38,21 @@ public class User {
     @NotNull
     private LocalDate registration;
 
-    @Column(name="last_login")
-    private LocalDateTime lastLogin;
-
     @OneToMany(
-            targetEntity = MoviesCollection.class,
+            targetEntity = Collection.class,
             mappedBy = "user",
             cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY
     )
-    private List<MoviesCollection> moviesCollections = new ArrayList<>();
+    private List<Collection> collections = new ArrayList<>();
 
     @OneToMany(
-            targetEntity = BooksCollection.class,
+            targetEntity = Quote.class,
             mappedBy = "user",
             cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY
     )
-    private List<BooksCollection> booksCollections = new ArrayList<>();
+    private List<Quote> quotes = new ArrayList<>();
 
     public User(String name, String email, String password) {
         this.name = name;

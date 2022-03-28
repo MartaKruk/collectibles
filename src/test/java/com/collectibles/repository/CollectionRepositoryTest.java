@@ -1,7 +1,7 @@
 package com.collectibles.repository;
 
 import com.collectibles.domain.Book;
-import com.collectibles.domain.BooksCollection;
+import com.collectibles.domain.Collection;
 import com.collectibles.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,10 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class BooksCollectionRepositoryTest {
+public class CollectionRepositoryTest {
 
     @Autowired
-    private BooksCollectionRepository booksCollectionRepository;
+    private CollectionRepository collectionRepository;
 
     @Autowired
     private BookRepository bookRepository;
@@ -27,48 +27,48 @@ public class BooksCollectionRepositoryTest {
     @Test
     void testBooksCollectionRepositorySave() {
         //Given
-        BooksCollection booksCollection = new BooksCollection();
+        Collection collection = new Collection();
 
         //When
-        booksCollectionRepository.save(booksCollection);
+        collectionRepository.save(collection);
 
         //Then
-        Long id = booksCollection.getId();
-        Optional<BooksCollection> testBooksCollection = booksCollectionRepository.findById(id);
+        Long id = collection.getId();
+        Optional<Collection> testBooksCollection = collectionRepository.findById(id);
         assertTrue(testBooksCollection.isPresent());
 
         //Cleanup
-        booksCollectionRepository.deleteById(id);
+        collectionRepository.deleteById(id);
     }
 
     @Test
     void testBooksCollectionRepositoryFindAll() {
         //Given
-        BooksCollection booksCollection = new BooksCollection();
+        Collection collection = new Collection();
 
         //When
-        booksCollectionRepository.save(booksCollection);
-        Long id = booksCollection.getId();
-        List<BooksCollection> testBooksCollections = booksCollectionRepository.findAll();
+        collectionRepository.save(collection);
+        Long id = collection.getId();
+        List<Collection> testCollections = collectionRepository.findAll();
 
         //Then
-        assertNotNull(testBooksCollections);
-        assertNotEquals(0, testBooksCollections.size());
+        assertNotNull(testCollections);
+        assertNotEquals(0, testCollections.size());
 
         //Cleanup
-        booksCollectionRepository.deleteById(id);
+        collectionRepository.deleteById(id);
     }
 
     @Test
     void testBooksCollectionRepositorySave_shouldSaveBooks() {
         //Given
         Book book = new Book();
-        BooksCollection booksCollection = new BooksCollection();
-        booksCollection.getBooks().add(book);
+        Collection collection = new Collection();
+        collection.getBooks().add(book);
 
         //When
-        booksCollectionRepository.save(booksCollection);
-        Long collectionId = booksCollection.getId();
+        collectionRepository.save(collection);
+        Long collectionId = collection.getId();
         Long bookId = book.getId();
         Optional<Book> testBook = bookRepository.findById(bookId);
 
@@ -76,7 +76,7 @@ public class BooksCollectionRepositoryTest {
         assertTrue(testBook.isPresent());
 
         //Cleanup
-        booksCollectionRepository.deleteById(collectionId);
+        collectionRepository.deleteById(collectionId);
         bookRepository.deleteById(bookId);
     }
 
@@ -84,14 +84,14 @@ public class BooksCollectionRepositoryTest {
     void testBooksCollectionRepositoryDelete_shouldNotDeleteBooks() {
         //Given
         Book book = new Book();
-        BooksCollection booksCollection = new BooksCollection();
-        booksCollection.getBooks().add(book);
+        Collection collection = new Collection();
+        collection.getBooks().add(book);
 
         //When
-        booksCollectionRepository.save(booksCollection);
-        Long collectionId = booksCollection.getId();
+        collectionRepository.save(collection);
+        Long collectionId = collection.getId();
         Long bookId = book.getId();
-        booksCollectionRepository.deleteById(collectionId);
+        collectionRepository.deleteById(collectionId);
         Optional<Book> testBook = bookRepository.findById(bookId);
 
         //Then
@@ -105,14 +105,14 @@ public class BooksCollectionRepositoryTest {
     void testBooksCollectionRepositoryDelete_shouldNotDeleteUser() {
         //Given
         User user = new User("Test name", "Test email", "Test password");
-        BooksCollection booksCollection = new BooksCollection();
-        user.getBooksCollections().add(booksCollection);
+        Collection collection = new Collection();
+        user.getCollections().add(collection);
 
         //When
         userRepository.save(user);
         Long userId = user.getId();
-        Long collectionId = booksCollection.getId();
-        booksCollectionRepository.deleteById(collectionId);
+        Long collectionId = collection.getId();
+        collectionRepository.deleteById(collectionId);
         Optional<User> testUser = userRepository.findById(userId);
 
         //Then

@@ -11,6 +11,7 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface BookRepository extends CrudRepository<Book, Long> {
+
     @Override
     List<Book> findAll();
 

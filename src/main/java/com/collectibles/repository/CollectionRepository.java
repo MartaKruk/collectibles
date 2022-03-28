@@ -1,22 +1,19 @@
 package com.collectibles.repository;
 
-import com.collectibles.domain.Movie;
+import com.collectibles.domain.Collection;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @Transactional
-public interface MovieRepository extends CrudRepository<Movie, Long> {
-    @Override
-    List<Movie> findAll();
+public interface CollectionRepository extends CrudRepository<Collection, Long> {
 
     @Override
-    Movie save(Movie movie);
+    List<Collection> findAll();
 
     @Override
-    Optional<Movie> findById(Long id);
+    Collection save(Collection collection);
 }

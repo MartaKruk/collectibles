@@ -1,4 +1,4 @@
-package com.collectibles.domain;
+package com.collectibles.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MoviesCollectionDto {
+public class CollectionDto {
+
     private Long id;
     private String name;
-    private String description;
 }

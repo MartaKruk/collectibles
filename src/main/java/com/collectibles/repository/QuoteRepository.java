@@ -1,6 +1,6 @@
 package com.collectibles.repository;
 
-import com.collectibles.domain.BooksCollection;
+import com.collectibles.domain.Quote;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,10 +9,8 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface BooksCollectionRepository extends CrudRepository<BooksCollection, Long> {
-    @Override
-    List<BooksCollection> findAll();
+public interface QuoteRepository extends CrudRepository<Quote, Long> {
 
     @Override
-    BooksCollection save(BooksCollection booksCollection);
+    List<Quote> findAll();
 }

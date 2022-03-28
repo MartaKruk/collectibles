@@ -1,6 +1,6 @@
 package com.collectibles.controller;
 
-import com.collectibles.domain.BookDto;
+import com.collectibles.domain.dto.BookDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

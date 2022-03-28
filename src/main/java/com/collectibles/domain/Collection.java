@@ -13,8 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="movies_collections")
-public class MoviesCollection {
+@Table(name="books_collections")
+public class Collection {
 
     @Id
     @GeneratedValue
@@ -25,18 +25,15 @@ public class MoviesCollection {
     @Column(name="name")
     private String name;
 
-    @Column(name="description")
-    private String description;
-
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
-            name = "join_movies_collections",
+            name = "join_books_collections",
             joinColumns = {@JoinColumn(name = "collection_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name= "movie_id", referencedColumnName = "id")}
+            inverseJoinColumns = {@JoinColumn(name= "book_id", referencedColumnName = "id")}
     )
-    private List<Movie> movies = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 }

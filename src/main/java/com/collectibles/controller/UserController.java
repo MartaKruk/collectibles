@@ -1,6 +1,6 @@
 package com.collectibles.controller;
 
-import com.collectibles.domain.UserDto;
+import com.collectibles.domain.dto.UserDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

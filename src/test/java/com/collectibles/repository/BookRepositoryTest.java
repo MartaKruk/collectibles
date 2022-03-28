@@ -59,7 +59,6 @@ public class BookRepositoryTest {
     void testBookRepositoryFindById() {
         //Given
         Book book = createTestBook();
-
         //When
         bookRepository.save(book);
         Long id = book.getId();
