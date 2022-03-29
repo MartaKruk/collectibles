@@ -17,7 +17,7 @@ public class BookRepositoryTest {
     private BookRepository bookRepository;
 
     private Book createTestBook() {
-        return new Book("Test title", "Test author", "Test description", "2020", "Test rating", "Test user rating", "Test user note");
+        return new Book("Test title", "Test author","Test user note");
     }
 
     @Test

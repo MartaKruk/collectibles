@@ -32,4 +32,10 @@ public class CollectionController {
     @PostMapping(value = "createCollection")
     public void createCollection(CollectionDto collectionDto) {
     }
+
+    //TODO: add book to collection endpoint
+
+    //TODO: remove book from collection endpoint
+
+    //TODO: get books in collection endpoint
 }

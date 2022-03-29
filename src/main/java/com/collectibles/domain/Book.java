@@ -1,6 +1,5 @@
 package com.collectibles.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,9 +8,8 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@Getter
 @Entity
 @Table(name="books")
 public class Book {
@@ -28,15 +26,22 @@ public class Book {
     @Column(name="author")
     private String author;
 
-    @Column(name="user_rating")
-    private String userRating;
+    @Column(name= "note")
+    private String note;
 
     @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "books")
     private List<Collection> collections = new ArrayList<>();
 
-    public Book(String title, String author, String description, String year, String rating, String userRating, String userNote) {
+    public Book(Long id, String title, String author, String note) {
+        this.id = id;
         this.title = title;
         this.author = author;
-        this.userRating = userRating;
+        this.note = note;
+    }
+
+    public Book(String title, String author, String note) {
+        this.title = title;
+        this.author = author;
+        this.note = note;
     }
 }
