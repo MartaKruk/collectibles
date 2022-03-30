@@ -38,7 +38,7 @@ public class BookController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BookDto> updateBook(@RequestBody BookDto bookDto) {
         Book book = bookMapper.mapToBook(bookDto);
         Book savedBook = bookService.saveBook(book);

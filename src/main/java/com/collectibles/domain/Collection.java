@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="books_collections")
+@Table(name= "collections")
 public class Collection {
 
     @Id
@@ -36,4 +36,9 @@ public class Collection {
             inverseJoinColumns = {@JoinColumn(name= "book_id", referencedColumnName = "id")}
     )
     private List<Book> books = new ArrayList<>();
+
+    public Collection(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

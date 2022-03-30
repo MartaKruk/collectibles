@@ -60,4 +60,11 @@ public class User {
         this.password = password;
         this.registration = LocalDate.now();
     }
+
+    public User(Long id, String name, String email, String password, LocalDate registration) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.registration = registration;
+    }
 }
