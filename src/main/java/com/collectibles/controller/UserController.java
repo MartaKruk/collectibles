@@ -43,7 +43,6 @@ public class UserController {
         User user = userMapper.mapToUser(userDto);
         User savedUser = userService.saveUser(user);
         return ResponseEntity.ok(userMapper.mapToUserDto(savedUser));
-        //TODO: Fix endpoint - updating changes user id
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

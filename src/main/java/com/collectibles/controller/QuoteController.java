@@ -39,18 +39,16 @@ public class QuoteController {
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<QuoteDto> updateQuote(QuoteDto quoteDto) {
+    public ResponseEntity<QuoteDto> updateQuote(@RequestBody QuoteDto quoteDto) {
         Quote quote = quoteMapper.mapToQuote(quoteDto);
         Quote savedQuote = quoteService.saveQuote(quote);
         return ResponseEntity.ok(quoteMapper.mapToQuoteDto(savedQuote));
-        //TODO: Fix endpoint - updating changes id
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createQuote(QuoteDto quoteDto) {
+    public ResponseEntity<Void> createQuote(@RequestBody QuoteDto quoteDto) {
         Quote quote = quoteMapper.mapToQuote(quoteDto);
         quoteService.saveQuote(quote);
         return ResponseEntity.ok().build();
-        //TODO: Fix endpoint
     }
 }

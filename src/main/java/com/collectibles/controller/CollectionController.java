@@ -39,14 +39,14 @@ public class CollectionController {
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CollectionDto> updateCollection(CollectionDto collectionDto) {
+    public ResponseEntity<CollectionDto> updateCollection(@RequestBody CollectionDto collectionDto) {
         Collection collection = collectionMapper.mapToCollection(collectionDto);
         Collection savedCollection = collectionService.saveCollection(collection);
         return ResponseEntity.ok(collectionMapper.mapToCollectionDto(savedCollection));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createCollection(CollectionDto collectionDto) {
+    public ResponseEntity<Void> createCollection(@RequestBody CollectionDto collectionDto) {
         Collection collection = collectionMapper.mapToCollection(collectionDto);
         collectionService.saveCollection(collection);
         return ResponseEntity.ok().build();
