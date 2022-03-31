@@ -3,7 +3,6 @@ package com.collectibles.quotelib.client;
 import com.collectibles.domain.dto.QuoteLibDto;
 import com.collectibles.quotelib.config.QuoteLibConfig;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
