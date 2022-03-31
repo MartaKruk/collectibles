@@ -1,4 +1,4 @@
-package com.collectibles.openlibrary.config;
+package com.collectibles.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

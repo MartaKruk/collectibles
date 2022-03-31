@@ -1,13 +1,18 @@
-package com.collectibles.openlibrary.client;
+package com.collectibles.client;
 
+import com.collectibles.domain.dto.ResultBookDto;
 import com.collectibles.domain.dto.ResultDto;
-import com.collectibles.openlibrary.config.OpenLibraryConfig;
+import com.collectibles.config.OpenLibraryConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -23,7 +28,11 @@ public class OpenLibraryClient {
                 .queryParam("limit", "20")
                 .build().encode().toUri();
 
-        return restTemplate.getForObject(url, ResultDto.class);
+        try {
+            return Optional.ofNullable(restTemplate.getForObject(url, ResultDto.class)).orElse(new ResultDto(new ArrayList<>()));
+        } catch (RestClientException e) {
+            return new ResultDto(new ArrayList<>());
+        }
     }
 
     public ResultDto getBookByTitle(String keyword) {
@@ -33,6 +42,10 @@ public class OpenLibraryClient {
                 .queryParam("limit", "20")
                 .build().encode().toUri();
 
-        return restTemplate.getForObject(url, ResultDto.class);
+        try {
+            return Optional.ofNullable(restTemplate.getForObject(url, ResultDto.class)).orElse(new ResultDto(new ArrayList<>()));
+        } catch (RestClientException e) {
+            return new ResultDto(new ArrayList<>());
+        }
     }
 }

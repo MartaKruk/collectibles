@@ -2,7 +2,7 @@ package com.collectibles.controller;
 
 import com.collectibles.domain.dto.ResultBookDto;
 import com.collectibles.domain.dto.ResultDto;
-import com.collectibles.openlibrary.client.OpenLibraryClient;
+import com.collectibles.client.OpenLibraryClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

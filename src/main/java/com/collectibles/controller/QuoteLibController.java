@@ -1,6 +1,6 @@
 package com.collectibles.controller;
 
-import com.collectibles.quotelib.client.QuoteLibClient;
+import com.collectibles.client.QuoteLibClient;
 import com.collectibles.domain.dto.QuoteLibDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
