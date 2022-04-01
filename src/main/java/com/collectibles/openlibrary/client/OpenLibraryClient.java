@@ -1,8 +1,7 @@
-package com.collectibles.client;
+package com.collectibles.openlibrary.client;
 
-import com.collectibles.domain.dto.ResultBookDto;
 import com.collectibles.domain.dto.ResultDto;
-import com.collectibles.config.OpenLibraryConfig;
+import com.collectibles.openlibrary.config.OpenLibraryConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
@@ -11,7 +10,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Component

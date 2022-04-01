@@ -1,7 +1,7 @@
 package com.collectibles.controller;
 
-import com.collectibles.client.QuoteLibClient;
 import com.collectibles.domain.dto.QuoteLibDto;
+import com.collectibles.service.QuoteLibService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +14,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class QuoteLibController {
 
-    private final QuoteLibClient quoteLibClient;
+    private final QuoteLibService quoteLibService;
 
     @GetMapping
     public void getRandomQuote() {
-        List<QuoteLibDto> quoteLibDtoList = quoteLibClient.getRandomQuote();
+        List<QuoteLibDto> quoteLibDtoList = quoteLibService.fetchRandomQuote();
 
         for (QuoteLibDto quoteLibDto : quoteLibDtoList) {
             System.out.println(quoteLibDto.getQuote_text());

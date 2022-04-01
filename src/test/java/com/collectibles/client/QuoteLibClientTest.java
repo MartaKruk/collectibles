@@ -1,7 +1,8 @@
 package com.collectibles.client;
 
-import com.collectibles.config.QuoteLibConfig;
+import com.collectibles.quotelib.config.QuoteLibConfig;
 import com.collectibles.domain.dto.QuoteLibDto;
+import com.collectibles.quotelib.client.QuoteLibClient;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;

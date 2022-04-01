@@ -1,4 +1,4 @@
-package com.collectibles.config;
+package com.collectibles.quotelib.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,8 +1,9 @@
 package com.collectibles.client;
 
-import com.collectibles.config.OpenLibraryConfig;
+import com.collectibles.openlibrary.config.OpenLibraryConfig;
 import com.collectibles.domain.dto.ResultBookDto;
 import com.collectibles.domain.dto.ResultDto;
+import com.collectibles.openlibrary.client.OpenLibraryClient;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

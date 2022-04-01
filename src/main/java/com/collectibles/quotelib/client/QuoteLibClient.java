@@ -1,7 +1,7 @@
-package com.collectibles.client;
+package com.collectibles.quotelib.client;
 
 import com.collectibles.domain.dto.QuoteLibDto;
-import com.collectibles.config.QuoteLibConfig;
+import com.collectibles.quotelib.config.QuoteLibConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
