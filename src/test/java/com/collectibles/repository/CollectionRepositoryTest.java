@@ -2,7 +2,6 @@ package com.collectibles.repository;
 
 import com.collectibles.domain.Book;
 import com.collectibles.domain.Collection;
-import com.collectibles.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -99,26 +98,5 @@ public class CollectionRepositoryTest {
 
         //Cleanup
         bookRepository.deleteById(bookId);
-    }
-
-    @Test
-    void testBooksCollectionRepositoryDelete_shouldNotDeleteUser() {
-        //Given
-        User user = new User("Test name", "Test email", "Test password");
-        Collection collection = new Collection();
-        user.getCollections().add(collection);
-
-        //When
-        userRepository.save(user);
-        Long userId = user.getId();
-        Long collectionId = collection.getId();
-        collectionRepository.deleteById(collectionId);
-        Optional<User> testUser = userRepository.findById(userId);
-
-        //Then
-        assertTrue(testUser.isPresent());
-
-        //Cleanup
-        userRepository.deleteById(userId);
     }
 }

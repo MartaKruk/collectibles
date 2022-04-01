@@ -26,16 +26,6 @@ public class Quote {
     @Column(name="content")
     private String content;
 
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
-
-    public Quote(Long id, String author, String content) {
-        this.id = id;
-        this.author = author;
-        this.content = content;
-    }
-
     public Quote(String author, String content) {
         this.author = author;
         this.content = content;

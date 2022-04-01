@@ -25,10 +25,6 @@ public class Collection {
     @Column(name="name")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
-
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "join_books_collections",

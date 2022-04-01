@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -38,34 +36,10 @@ public class User {
     @NotNull
     private LocalDate registration;
 
-    @OneToMany(
-            targetEntity = Collection.class,
-            mappedBy = "user",
-            cascade = CascadeType.PERSIST,
-            fetch = FetchType.LAZY
-    )
-    private List<Collection> collections = new ArrayList<>();
-
-    @OneToMany(
-            targetEntity = Quote.class,
-            mappedBy = "user",
-            cascade = CascadeType.PERSIST,
-            fetch = FetchType.LAZY
-    )
-    private List<Quote> quotes = new ArrayList<>();
-
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.registration = LocalDate.now();
-    }
-
-    public User(Long id, String name, String email, String password, LocalDate registration) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.registration = registration;
     }
 }

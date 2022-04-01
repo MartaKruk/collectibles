@@ -60,24 +60,4 @@ public class UserRepositoryTest {
         //Cleanup
         userRepository.deleteById(id);
     }
-
-    @Test
-    void testUserRepositorySave_shouldSaveBooksCollections() {
-        //Given
-        User user = createTestUser();
-        Collection collection = new Collection();
-        user.getCollections().add(collection);
-
-        //When
-        userRepository.save(user);
-        Long userId = user.getId();
-        Long collectionId = collection.getId();
-        Optional<Collection> testBooksCollection = collectionRepository.findById(collectionId);
-
-        //Then
-        assertTrue(testBooksCollection.isPresent());
-
-        //Cleanup
-        userRepository.deleteById(userId);
-    }
 }
