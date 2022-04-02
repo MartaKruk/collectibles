@@ -17,12 +17,7 @@ public class QuoteLibController {
     private final QuoteLibService quoteLibService;
 
     @GetMapping
-    public void getRandomQuote() {
-        List<QuoteLibDto> quoteLibDtoList = quoteLibService.fetchRandomQuote();
-
-        for (QuoteLibDto quoteLibDto : quoteLibDtoList) {
-            System.out.println(quoteLibDto.getQuote_text());
-            System.out.println(quoteLibDto.getAuthor());
-        }
+    public List<QuoteLibDto> getRandomQuote() {
+        return quoteLibService.fetchRandomQuote();
     }
 }

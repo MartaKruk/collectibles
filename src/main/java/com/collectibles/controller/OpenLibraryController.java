@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/v1/search")
 @RequiredArgsConstructor
@@ -17,20 +20,22 @@ public class OpenLibraryController {
     private final OpenLibraryService openLibraryService;
 
     @GetMapping(value = "/author/{keyword}")
-    public void getBookByAuthor(@PathVariable String keyword) {
+    public List<ResultBookDto> getBookByAuthor(@PathVariable String keyword) {
         ResultDto resultDto = openLibraryService.fetchBookByAuthor(keyword);
 
-        for(ResultBookDto resultBookDto : resultDto.getBooks()) {
-            System.out.println(resultBookDto.getTitle());
-        }
+        List<ResultBookDto> resultBookDtoList = new ArrayList<>();
+        resultBookDtoList.addAll(resultDto.getBooks());
+
+        return resultBookDtoList;
     }
 
     @GetMapping(value = "/title/{keyword}")
-    public void getBookByTitle(@PathVariable String keyword) {
+    public List<ResultBookDto> getBookByTitle(@PathVariable String keyword) {
         ResultDto resultDto = openLibraryService.fetchBookByTitle(keyword);
 
-        for(ResultBookDto resultBookDto : resultDto.getBooks()) {
-            System.out.println(resultBookDto.getTitle());
-        }
+        List<ResultBookDto> resultBookDtoList = new ArrayList<>();
+        resultBookDtoList.addAll(resultDto.getBooks());
+
+        return resultBookDtoList;
     }
 }

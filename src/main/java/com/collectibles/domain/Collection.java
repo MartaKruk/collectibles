@@ -25,11 +25,11 @@ public class Collection {
     @Column(name="name")
     private String name;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(
-            name = "join_books_collections",
-            joinColumns = {@JoinColumn(name = "collection_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name= "book_id", referencedColumnName = "id")}
+    @OneToMany(
+            targetEntity = Book.class,
+            mappedBy = "collection",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY
     )
     private List<Book> books = new ArrayList<>();
 

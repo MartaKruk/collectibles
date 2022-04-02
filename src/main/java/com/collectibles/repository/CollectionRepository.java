@@ -20,4 +20,7 @@ public interface CollectionRepository extends CrudRepository<Collection, Long> {
 
     @Override
     Optional<Collection> findById(Long id);
+
+    @Override
+    void deleteById(Long id);
 }

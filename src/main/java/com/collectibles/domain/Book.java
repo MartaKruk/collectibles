@@ -5,8 +5,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -29,8 +27,9 @@ public class Book {
     @Column(name= "note")
     private String note;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "books")
-    private List<Collection> collections = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name= "collection_id")
+    private Collection collection;
 
     public Book(Long id, String title, String author, String note) {
         this.id = id;
@@ -43,5 +42,9 @@ public class Book {
         this.title = title;
         this.author = author;
         this.note = note;
+    }
+
+    public void setCollection(Collection collection) {
+        this.collection = collection;
     }
 }

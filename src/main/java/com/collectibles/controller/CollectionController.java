@@ -1,9 +1,14 @@
 package com.collectibles.controller;
 
+import com.collectibles.domain.Book;
 import com.collectibles.domain.Collection;
+import com.collectibles.domain.dto.BookDto;
 import com.collectibles.domain.dto.CollectionDto;
+import com.collectibles.exceptions.BookNotFoundException;
 import com.collectibles.exceptions.CollectionNotFoundException;
+import com.collectibles.mapper.BookMapper;
 import com.collectibles.mapper.CollectionMapper;
+import com.collectibles.service.BookService;
 import com.collectibles.service.CollectionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +25,8 @@ public class CollectionController {
 
     private final CollectionService collectionService;
     private final CollectionMapper collectionMapper;
+    private final BookService bookService;
+    private final BookMapper bookMapper;
 
     @GetMapping
     public ResponseEntity<List<CollectionDto>> getCollections() {
@@ -50,12 +57,31 @@ public class CollectionController {
         Collection collection = collectionMapper.mapToCollection(collectionDto);
         collectionService.saveCollection(collection);
         return ResponseEntity.ok().build();
-        //TODO: fix endpoint after Postman test
     }
 
-    //TODO: add book to collection endpoint
+    @GetMapping(value = "{id}/books")
+    public ResponseEntity<List<BookDto>> getBooksInCollection(@PathVariable Long id) throws CollectionNotFoundException {
+        List<BookDto> books = bookMapper.mapToBookDtoList(collectionService.getCollection(id).getBooks());
+        return new ResponseEntity<>(books, HttpStatus.OK);
+    }
 
-    //TODO: remove book from collection endpoint
+    @PostMapping(value = "{id}/books")
+    public ResponseEntity<Void> addBookToCollection(@PathVariable Long id, @RequestBody BookDto bookDto) throws CollectionNotFoundException {
+        Collection collection = collectionService.getCollection(id);
+        Book book = bookMapper.mapToBook(bookDto);
+        collection.getBooks().add(book);
+        book.setCollection(collection);
+        bookService.saveBook(book);
+        collectionService.saveCollection(collection);
+        return ResponseEntity.ok().build();
+    }
 
-    //TODO: get books in collection endpoint
+    @DeleteMapping(value = "{collectionId}/books/{bookId}")
+    public ResponseEntity<Void> deleteBookFromCollection(@PathVariable Long collectionId, @PathVariable Long bookId) throws CollectionNotFoundException, BookNotFoundException {
+        Collection collection = collectionService.getCollection(collectionId);
+        Book book = bookService.getBook(bookId);
+        collection.getBooks().remove(book);
+        bookService.deleteBook(bookId);
+        return ResponseEntity.ok().build();
+    }
 }
