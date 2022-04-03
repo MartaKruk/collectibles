@@ -15,6 +15,7 @@ public class BookMapper {
                 bookDto.getId(),
                 bookDto.getTitle(),
                 bookDto.getAuthor(),
+                bookDto.getYear(),
                 bookDto.getNote()
         );
     }
@@ -24,6 +25,7 @@ public class BookMapper {
                 book.getId(),
                 book.getTitle(),
                 book.getAuthor(),
+                book.getYear(),
                 book.getNote());
     }
 

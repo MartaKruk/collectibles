@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 
 @Getter
 @AllArgsConstructor
@@ -25,21 +24,17 @@ public class User {
     @NotNull
     private String name;
 
-    @Column(name="email")
-    private String email;
-
     @Column(name="password")
     @NotNull
     private String password;
 
-    @Column(name="registration")
+    @Column(name="role")
     @NotNull
-    private LocalDate registration;
+    private String role;
 
-    public User(String name, String email, String password) {
+    public User(String name, String password, String role) {
         this.name = name;
-        this.email = email;
         this.password = password;
-        this.registration = LocalDate.now();
+        this.role = role;
     }
 }

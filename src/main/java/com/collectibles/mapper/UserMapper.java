@@ -14,9 +14,8 @@ public class UserMapper {
         return new User(
                 userDto.getId(),
                 userDto.getName(),
-                userDto.getEmail(),
                 userDto.getPassword(),
-                userDto.getRegistration()
+                userDto.getRole()
         );
     }
 
@@ -24,9 +23,8 @@ public class UserMapper {
         return new UserDto(
                 user.getId(),
                 user.getName(),
-                user.getEmail(),
                 user.getPassword(),
-                user.getRegistration()
+                user.getRole()
         );
     }
 

@@ -1,6 +1,5 @@
 package com.collectibles.repository;
 
-import com.collectibles.domain.Collection;
 import com.collectibles.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +17,10 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private CollectionRepository collectionRepository;
-
     private static final String NAME = "Test name";
 
     private User createTestUser() {
-        return new User(NAME, "Test email", "Test password");
+        return new User(NAME, "Test password", "Test role");
     }
 
     @Test

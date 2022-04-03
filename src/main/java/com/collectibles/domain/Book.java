@@ -1,5 +1,6 @@
 package com.collectibles.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,6 +25,9 @@ public class Book {
     @Column(name="author")
     private String author;
 
+    @Column(name="year")
+    private String year;
+
     @Column(name= "note")
     private String note;
 
@@ -31,10 +35,11 @@ public class Book {
     @JoinColumn(name= "collection_id")
     private Collection collection;
 
-    public Book(Long id, String title, String author, String note) {
+    public Book(Long id, String title, String author, String year, String note) {
         this.id = id;
         this.title = title;
         this.author = author;
+        this.year = year;
         this.note = note;
     }
 

@@ -22,7 +22,7 @@ public class OpenLibraryClient {
     public ResultDto getBookByAuthor(String keyword) {
         URI url = UriComponentsBuilder.fromHttpUrl(openLibraryConfig.getOpenLibraryApiEndpoint())
                 .queryParam("author", keyword)
-                .queryParam("fields", "title,author_name")
+                .queryParam("fields", "title,author_name,first_publish_year")
                 .queryParam("limit", "20")
                 .build().encode().toUri();
 
@@ -36,12 +36,13 @@ public class OpenLibraryClient {
     public ResultDto getBookByTitle(String keyword) {
         URI url = UriComponentsBuilder.fromHttpUrl(openLibraryConfig.getOpenLibraryApiEndpoint())
                 .queryParam("title", keyword)
-                .queryParam("fields", "title,author_name")
+                .queryParam("fields", "title,author_name,first_publish_year")
                 .queryParam("limit", "20")
                 .build().encode().toUri();
 
         try {
-            return Optional.ofNullable(restTemplate.getForObject(url, ResultDto.class)).orElse(new ResultDto(new ArrayList<>()));
+            return Optional.ofNullable(restTemplate.getForObject(url, ResultDto.class))
+                    .orElse(new ResultDto(new ArrayList<>()));
         } catch (RestClientException e) {
             return new ResultDto(new ArrayList<>());
         }

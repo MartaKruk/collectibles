@@ -19,7 +19,7 @@ class BookMapperTest {
     @Test
     void shouldMapToBook() {
         //Given
-        BookDto bookDto = new BookDto(1L, "title", "author", "note");
+        BookDto bookDto = new BookDto(1L, "title", "author", "year", "note");
 
         //When
         Book book = bookMapper.mapToBook(bookDto);
@@ -34,7 +34,7 @@ class BookMapperTest {
     @Test
     void shouldMapToBookDto() {
         //Given
-        Book book = new Book(1L, "title", "author", "note");
+        Book book = new Book(1L, "title", "author", "year", "note");
 
         //When
         BookDto bookDto = bookMapper.mapToBookDto(book);
@@ -43,13 +43,14 @@ class BookMapperTest {
         assertEquals(book.getId(), bookDto.getId());
         assertEquals(book.getTitle(), bookDto.getTitle());
         assertEquals(book.getAuthor(), bookDto.getAuthor());
+        assertEquals(book.getYear(), bookDto.getYear());
         assertEquals(book.getNote(), bookDto.getNote());
     }
 
     @Test
     void shouldMapToBookDtoList() {
         //Given
-        Book book = new Book(1L, "title", "author", "note");
+        Book book = new Book(1L, "title", "author", "year", "note");
         List<Book> books = List.of(book);
 
         //When
@@ -60,6 +61,7 @@ class BookMapperTest {
         assertEquals(books.get(0).getId(), bookDtos.get(0).getId());
         assertEquals(books.get(0).getTitle(), bookDtos.get(0).getTitle());
         assertEquals(books.get(0).getAuthor(), bookDtos.get(0).getAuthor());
+        assertEquals(books.get(0).getYear(), bookDtos.get(0).getYear());
         assertEquals(books.get(0).getNote(), bookDtos.get(0).getNote());
     }
 }
