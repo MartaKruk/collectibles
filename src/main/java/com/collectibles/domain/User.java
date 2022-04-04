@@ -21,15 +21,12 @@ public class User {
     private Long id;
 
     @Column(name="name", unique=true)
-    @NotNull
     private String name;
 
     @Column(name="password")
-    @NotNull
     private String password;
 
     @Column(name="role")
-    @NotNull
     private String role;
 
     public User(String name, String password, String role) {

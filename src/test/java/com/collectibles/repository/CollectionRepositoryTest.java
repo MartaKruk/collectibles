@@ -20,9 +20,6 @@ public class CollectionRepositoryTest {
     @Autowired
     private BookRepository bookRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
     @Test
     void testBooksCollectionRepositorySave() {
         //Given

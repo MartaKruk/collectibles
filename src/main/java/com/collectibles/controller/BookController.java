@@ -4,6 +4,7 @@ import com.collectibles.domain.Book;
 import com.collectibles.domain.dto.BookDto;
 import com.collectibles.exceptions.BookNotFoundException;
 import com.collectibles.mapper.BookMapper;
+import com.collectibles.mapper.CollectionMapper;
 import com.collectibles.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ public class BookController {
 
     private final BookService bookService;
     private final BookMapper bookMapper;
+    private final CollectionMapper collectionMapper;
 
     @GetMapping
     public ResponseEntity<List<BookDto>> getBooks() {

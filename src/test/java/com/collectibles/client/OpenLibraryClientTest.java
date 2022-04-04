@@ -36,10 +36,10 @@ class OpenLibraryClientTest {
         //Given
         when(openLibraryConfig.getOpenLibraryApiEndpoint()).thenReturn("http://test.com/search");
 
-        ResultBookDto resultBookDto = new ResultBookDto("test_title", new ArrayList<>());
+        ResultBookDto resultBookDto = new ResultBookDto("test_title", new ArrayList<>(), 2000);
         ResultDto resultDto = new ResultDto(List.of(resultBookDto));
 
-        URI url = new URI("http://test.com/search?author=test&fields=title,author_name&limit=20");
+        URI url = new URI("http://test.com/search?author=test&fields=title,author_name,first_publish_year&limit=20");
 
         when(restTemplate.getForObject(url, ResultDto.class)).thenReturn(resultDto);
 
@@ -57,10 +57,10 @@ class OpenLibraryClientTest {
         //Given
         when(openLibraryConfig.getOpenLibraryApiEndpoint()).thenReturn("http://test.com/search");
 
-        ResultBookDto resultBookDto = new ResultBookDto("test_title", new ArrayList<>());
+        ResultBookDto resultBookDto = new ResultBookDto("test_title", new ArrayList<>(), 2000);
         ResultDto resultDto = new ResultDto(List.of(resultBookDto));
 
-        URI url = new URI("http://test.com/search?title=test&fields=title,author_name&limit=20");
+        URI url = new URI("http://test.com/search?title=test&fields=title,author_name,first_publish_year&limit=20");
 
         when(restTemplate.getForObject(url, ResultDto.class)).thenReturn(resultDto);
 
@@ -78,7 +78,7 @@ class OpenLibraryClientTest {
         //Given
         when(openLibraryConfig.getOpenLibraryApiEndpoint()).thenReturn("http://test.com/search");
 
-        URI url = new URI("http://test.com/search?author=test&fields=title,author_name&limit=20");
+        URI url = new URI("http://test.com/search?author=test&fields=title,author_name,first_publish_year&limit=20");
 
         when(restTemplate.getForObject(url, ResultDto.class)).thenReturn(null);
 
@@ -94,7 +94,7 @@ class OpenLibraryClientTest {
         //Given
         when(openLibraryConfig.getOpenLibraryApiEndpoint()).thenReturn("http://test.com/search");
 
-        URI url = new URI("http://test.com/search?title=test&fields=title,author_name&limit=20");
+        URI url = new URI("http://test.com/search?title=test&fields=title,author_name,first_publish_year&limit=20");
 
         when(restTemplate.getForObject(url, ResultDto.class)).thenReturn(null);
 

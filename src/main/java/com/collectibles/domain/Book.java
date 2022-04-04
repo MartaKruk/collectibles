@@ -1,6 +1,5 @@
 package com.collectibles.domain;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
