@@ -19,8 +19,7 @@ public class QuoteScheduler {
     private final QuoteLibMapper quoteLibMapper;
     private final QuoteService quoteService;
 
-    //@Scheduled(cron = "0 0 12 * * *")
-    @Scheduled(fixedDelay = 100000)
+    @Scheduled(cron = "0 0 12 * * *")
     public void updateQuotes() {
         List<QuoteLib> quoteLibList = quoteLibFacade.fetchRandomQuote();
         List<Quote> quoteList = quoteLibMapper.mapToQuoteList(quoteLibList);
