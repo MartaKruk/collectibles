@@ -17,7 +17,12 @@ public class BookRepositoryTest {
     private BookRepository bookRepository;
 
     private Book createTestBook() {
-        return new Book("Test title", "Test author","Test user note");
+        return Book.builder()
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build();
     }
 
     @Test

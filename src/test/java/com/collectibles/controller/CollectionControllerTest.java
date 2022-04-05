@@ -146,9 +146,21 @@ class CollectionControllerTest {
     @Test
     void shouldGetBooksInCollection() throws Exception {
         //Given
-        List<Book> books = List.of(new Book(1L, "title", "author", "2000", "note"));
+        List<Book> books = List.of(Book.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build());
         Collection collection = new Collection(1L, "name", books);
-        List<BookDto> bookDtos = List.of(new BookDto(1L, "title", "author", "2000", "note"));
+        List<BookDto> bookDtos = List.of(BookDto.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build());
 
         when(collectionService.getCollection(collection.getId())).thenReturn(collection);
         when(bookMapper.mapToBookDtoList(books)).thenReturn(bookDtos);
@@ -163,16 +175,28 @@ class CollectionControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].id", Matchers.is(1)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].title", Matchers.is("title")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].author", Matchers.is("author")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].year", Matchers.is("2000")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].year", Matchers.is("year")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].note", Matchers.is("note")));
     }
 
     @Test
     void shouldAddBookToCollection() throws Exception {
         //Given
-        BookDto bookDto = new BookDto(1L, "title", "author", "2000", "note");
+        BookDto bookDto = BookDto.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build();
         Collection collection = new Collection(1L, "name", new ArrayList<>());
-        Book book = new Book(1L, "title", "author", "2000", "note");
+        Book book = Book.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build();
 
         when(collectionService.getCollection(collection.getId())).thenReturn(collection);
         when(bookMapper.mapToBook(any(BookDto.class))).thenReturn(book);
@@ -196,7 +220,13 @@ class CollectionControllerTest {
     void deleteBookFromCollection() throws Exception {
         //Given
         Collection collection = new Collection(1L, "name", new ArrayList<>());
-        Book book = new Book(1L, "title", "author", "2000", "note");
+        Book book = Book.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build();
 
         when(collectionService.getCollection(collection.getId())).thenReturn(collection);
         when(bookService.getBook(book.getId())).thenReturn(book);

@@ -19,7 +19,13 @@ class BookMapperTest {
     @Test
     void shouldMapToBook() {
         //Given
-        BookDto bookDto = new BookDto(1L, "title", "author", "year", "note");
+        BookDto bookDto = BookDto.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build();
 
         //When
         Book book = bookMapper.mapToBook(bookDto);
@@ -34,7 +40,13 @@ class BookMapperTest {
     @Test
     void shouldMapToBookDto() {
         //Given
-        Book book = new Book(1L, "title", "author", "year", "note");
+        Book book = Book.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build();
 
         //When
         BookDto bookDto = bookMapper.mapToBookDto(book);
@@ -50,7 +62,13 @@ class BookMapperTest {
     @Test
     void shouldMapToBookDtoList() {
         //Given
-        Book book = new Book(1L, "title", "author", "year", "note");
+        Book book = Book.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build();
         List<Book> books = List.of(book);
 
         //When

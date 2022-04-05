@@ -11,22 +11,23 @@ import java.util.stream.Collectors;
 public class BookMapper {
 
     public Book mapToBook(final BookDto bookDto) {
-        return new Book(
-                bookDto.getId(),
-                bookDto.getTitle(),
-                bookDto.getAuthor(),
-                bookDto.getYear(),
-                bookDto.getNote()
-        );
+        return Book.builder()
+                .id(bookDto.getId())
+                .title(bookDto.getTitle())
+                .author(bookDto.getAuthor())
+                .year(bookDto.getYear())
+                .note(bookDto.getNote())
+                .build();
     }
 
     public BookDto mapToBookDto(final Book book) {
-        return new BookDto(
-                book.getId(),
-                book.getTitle(),
-                book.getAuthor(),
-                book.getYear(),
-                book.getNote());
+        return BookDto.builder()
+                .id(book.getId())
+                .title(book.getTitle())
+                .author(book.getAuthor())
+                .year(book.getYear())
+                .note(book.getNote())
+                .build();
     }
 
     public List<BookDto> mapToBookDtoList(final List<Book> bookList) {

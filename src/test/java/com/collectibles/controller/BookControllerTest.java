@@ -39,8 +39,20 @@ class BookControllerTest {
     @Test
     void shouldGetBooks() throws Exception {
         //Given
-        List<Book> books = List.of(new Book(1L, "title", "author", "2000", "note"));
-        List<BookDto> bookDtos = List.of(new BookDto(1L, "title", "author", "2000", "note"));
+        List<Book> books = List.of(Book.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build());
+        List<BookDto> bookDtos = List.of(BookDto.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build());
 
         when(bookService.getAllBooks()).thenReturn(books);
         when(bookMapper.mapToBookDtoList(books)).thenReturn(bookDtos);
@@ -55,15 +67,27 @@ class BookControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].id", Matchers.is(1)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].title", Matchers.is("title")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].author", Matchers.is("author")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].year", Matchers.is("2000")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].year", Matchers.is("year")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].note", Matchers.is("note")));
     }
 
     @Test
     void shouldGetBook() throws Exception {
         //Given
-        Book book = new Book(1L, "title", "author", "2000", "note");
-        BookDto bookDto = new BookDto(1L, "title", "author", "2000", "note");
+        Book book = Book.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build();
+        BookDto bookDto = BookDto.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build();
 
         when(bookService.getBook(book.getId())).thenReturn(book);
         when(bookMapper.mapToBookDto(book)).thenReturn(bookDto);
@@ -77,7 +101,7 @@ class BookControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("title")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.author", Matchers.is("author")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.year", Matchers.is("2000")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.year", Matchers.is("year")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.note", Matchers.is("note")));
     }
 
@@ -97,8 +121,20 @@ class BookControllerTest {
     @Test
     void shouldUpdateBook() throws Exception {
         //Given
-        Book book = new Book(1L, "title", "author", "2000", "note");
-        BookDto bookDto = new BookDto(1L, "title", "author", "2000", "note");
+        Book book = Book.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build();
+        BookDto bookDto = BookDto.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build();
 
         when(bookMapper.mapToBook(any(BookDto.class))).thenReturn(book);
         when(bookService.saveBook(book)).thenReturn(book);
@@ -118,15 +154,27 @@ class BookControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("title")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.author", Matchers.is("author")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.year", Matchers.is("2000")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.year", Matchers.is("year")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.note", Matchers.is("note")));
     }
 
     @Test
     void shouldCreateBook() throws Exception {
         //Given
-        Book book = new Book(1L, "title", "author", "2000", "note");
-        BookDto bookDto = new BookDto(1L, "title", "author", "2000", "note");
+        Book book = Book.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build();
+        BookDto bookDto = BookDto.builder()
+                .id(1L)
+                .title("title")
+                .author("author")
+                .year("year")
+                .note("note")
+                .build();
 
         when(bookMapper.mapToBook(bookDto)).thenReturn(book);
         when(bookService.saveBook(book)).thenReturn(book);

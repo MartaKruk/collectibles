@@ -1,17 +1,11 @@
 package com.collectibles.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Builder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+@Builder
 @Entity
 @Table(name="books")
 public class Book {
@@ -38,21 +32,44 @@ public class Book {
     @JoinColumn(name= "collection_id")
     private Collection collection;
 
-    public Book(Long id, String title, String author, String year, String note) {
+    public Book(Long id, String title, String author, String year, String note, Collection collection) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.year = year;
         this.note = note;
+        this.collection = collection;
     }
 
-    public Book(String title, String author, String note) {
-        this.title = title;
-        this.author = author;
-        this.note = note;
+    public Book() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public Collection getCollection() {
+        return collection;
     }
 
     public void setCollection(Collection collection) {
         this.collection = collection;
     }
 }
+
+
